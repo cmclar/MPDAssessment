@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+import android.widget.ViewFlipper;
 
 import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParser;
@@ -40,11 +41,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
     private TextView descriptionInput;
     private TextView locationInput;
     private TextView dateInput;
+    private TextView dataLoader;
     private Button incidentButton;
     private Button roadButton;
     private Button planButton;
     private Button nextButton;
     private Button moreButton;
+    private Button startButton;
     private String result1 = "";
     private String result2 = "";
     private String result3 = "";
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
     private LinkedList<Incident> curList = null;
     private int count = 0;
     private String urlNum = "";
+    private ViewFlipper viewFlipper;
     Thread netThread1 = null;
     Thread netThread2 = null;
     Thread netThread3 = null;
@@ -71,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
         descriptionInput = (TextView)findViewById(R.id.descInput);
         locationInput = (TextView)findViewById(R.id.locInput);
         dateInput = (TextView)findViewById(R.id.dateInput);
+        dataLoader = (TextView)findViewById(R.id.dataLoader);
         incidentButton = (Button)findViewById(R.id.incidentButton);
         incidentButton.setOnClickListener(this);
         roadButton = (Button)findViewById(R.id.roadButton);
@@ -81,12 +86,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
         nextButton.setOnClickListener(this);
         moreButton = (Button)findViewById(R.id.moreButton);
         moreButton.setOnClickListener(this);
+        startButton = (Button)findViewById(R.id.startButton);
+        startButton.setOnClickListener(this);
+        viewFlipper = (ViewFlipper)findViewById(R.id.flipView1);
         startProgress();
 
     } // End of onCreate
 
     public void onClick(View aview)
     {
+        if (aview == startButton && planList != null)
+        {
+            viewFlipper.setDisplayedChild(viewFlipper.indexOfChild(findViewById(R.id.scrollView1)));
+        }
         if (aview == moreButton && curList != null)
             descriptionInput.setText(curList.get(count).getDescription());
         if (aview == incidentButton) {
@@ -137,8 +149,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
         // Run network access on a separate thread;
         netThread1 = new Thread(new Task(url1), "curThread");
         netThread1.start();
-
-
     } //
 
     public void updateFields()
@@ -292,16 +302,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
                 {
                     if (xpp.getName().equalsIgnoreCase("item"))
                     {
-                        Log.e("MyTag","widget is " + incident.toString());
                         alist.add(incident);
                         itemFound = false;
-                    }
-                    else
-                    if (xpp.getName().equalsIgnoreCase("channel"))
-                    {
-                        int size;
-                        size = alist.size();
-                        Log.e("MyTag","widgetcollection size is " + size);
                     }
                 }
 
