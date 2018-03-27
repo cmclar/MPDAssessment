@@ -1,7 +1,7 @@
 package mpdproject.gcu.me.org.assignmenttest1;
 
 /**
- * Created by craig on 22/03/2018.
+ * Craig McLaren s1437087
  */
 
 public class Incident

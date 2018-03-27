@@ -33,30 +33,44 @@
                     android:orientation="vertical"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent">
-                    <Button
-                        android:id="@+id/searchButton"
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="horizontal"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Search for an incident/roadwork"
-                        />
-                    <Button
-                        android:id="@+id/incidentButton"
+                        android:layout_height="fill_parent">
+                        <Button
+                            android:id="@+id/searchButton"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:text="Search for an incident/roadwork"
+                            android:layout_weight="1"
+                            />
+                        <Button
+                            android:id="@+id/incidentButton"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:text="Current incidents"
+                            android:layout_weight="1"
+                           />
+                    </LinearLayout>
+                    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:orientation="horizontal"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Current incidents"
-                    />
-                    <Button
-                        android:id="@+id/roadButton"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Current Roadworks"
-                        />
-                    <Button
-                        android:id="@+id/planButton"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Planned Roadworks"
-                        />
+                        android:layout_height="fill_parent">
+                        <Button
+                            android:id="@+id/roadButton"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Current Roadworks"
+                            android:layout_weight="1"
+                            />
+                        <Button
+                            android:id="@+id/planButton"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Planned Roadworks"
+                            android:layout_weight="1"
+                            />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -71,6 +85,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="30sp"
                         android:text="Current incidents:"
+                        android:layout_gravity="center"
                     />
 
                     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -155,16 +170,13 @@
             android:id="@+id/searchInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enter Desired Road"
-            android:layout_gravity="center"/>
+            android:text="Enter Desired Road"/>
 
         <Button
             android:id="@+id/confirmSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search"
-            android:layout_gravity="center"/>
+            android:text="Search"/>
         </LinearLayout>
     </ScrollView>
 </ViewFlipper>
-
